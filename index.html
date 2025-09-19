@@ -377,22 +377,18 @@ src="https://www.facebook.com/tr?id=778466684826549&ev=PageView&noscript=1"
             <form id="orderForm">
                 <div class="form-group">
                     <label for="name">Ваше ім'я:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required autocomplete="name" enterkeyhint="done">
                 </div>
                 <div class="form-group">
                     <label for="phone">Ваш телефон:</label>
                     <div class="input-with-action">
-                        <input type="tel" id="phone" name="phone" required placeholder="+38 (0__) ___-__-__" inputmode="tel" autocomplete="tel" aria-label="Ваш телефон">
-                        <button type="button" class="clear-input" aria-label="Очистити номер">&times;</button>
+                        <input type="tel" id="phone" name="phone" required placeholder="+380XXXXXXXXX" inputmode="numeric" autocomplete="tel-national" aria-label="Ваш телефон">
+                        <button type="button" class="clear-input" aria-label="Очистити номер" tabindex="0">&times;</button>
                     </div>
                 </div>
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="privacy" name="privacy" required>
-                    <label for="privacy">Я погоджуюсь з <a href="privacy.html" target="_blank">політикою конфіденційності</a></label>
-                </div>
-                <button type="submit" class="cta-button">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
+                <button type="submit" class="cta-button">ЗАМОВИТИ</button>
             </form>
-            <p class="form-note">*Наш менеджер зв'яжеться з вами найближчим часом для підтвердження замовлення</p>
+            <p class="form-note">Натискаючи «Замовити», ви погоджуєтесь з нашою <a href="privacy.html" target="_blank">політикою конфіденційності</a>. Наш менеджер зв'яжеться з вами для підтвердження.</p>
         </div>
     </div>
 

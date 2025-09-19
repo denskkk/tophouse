@@ -28,7 +28,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Add phone number formatting with gentle mask and clear button
+// Phone input: keep simple input (no live mask) and a fast clear button
 const phoneInput = document.getElementById('phone');
 const clearPhoneBtn = document.querySelector('.clear-input');
 
@@ -36,34 +36,6 @@ if (clearPhoneBtn && phoneInput) {
     clearPhoneBtn.addEventListener('click', () => {
         phoneInput.value = '';
         phoneInput.focus();
-    });
-}
-
-if (phoneInput) {
-    phoneInput.addEventListener('input', function (e) {
-        let value = e.target.value.replace(/\D/g, '');
-
-        if (value.length === 0) {
-            e.target.value = '';
-            return;
-        }
-
-        if (value.startsWith('38')) value = value.slice(2);
-        if (!value.startsWith('0')) value = '0' + value;
-        value = value.slice(0, 10);
-
-        let out = '+38 ';
-        if (value.length <= 3) {
-            out += '(' + value + ')';
-        } else if (value.length <= 6) {
-            out += '(' + value.slice(0,3) + ') ' + value.slice(3);
-        } else if (value.length <= 8) {
-            out += '(' + value.slice(0,3) + ') ' + value.slice(3,6) + '-' + value.slice(6);
-        } else {
-            out += '(' + value.slice(0,3) + ') ' + value.slice(3,6) + '-' + value.slice(6,8) + '-' + value.slice(8);
-        }
-
-        e.target.value = out;
     });
 }
 
@@ -79,13 +51,6 @@ function openModal() {
 
 function closeModal() {
     if (!modal) return;
-    const nameField = document.getElementById('name');
-    const phoneField = document.getElementById('phone');
-    if ((nameField && nameField.value.trim()) || (phoneField && phoneField.value.trim())) {
-        if (!confirm('Ви впевнені, що хочете закрити форму? Введені дані будуть втрачені.')) {
-            return;
-        }
-    }
     modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
@@ -94,7 +59,6 @@ function handleFormSubmit(e) {
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const privacy = document.getElementById('privacy');
 
     if (!name) {
         alert('Будь ласка, введіть ваше ім\'я');
@@ -110,10 +74,7 @@ function handleFormSubmit(e) {
         alert('Будь ласка, введіть коректний український номер телефону');
         return;
     }
-    if (!privacy.checked) {
-        alert('Будь ласка, погодьтесь з політикою конфіденційності');
-        return;
-    }
+    // No extra confirmations — one tap order
 
     const submitButton = e.target.querySelector('button[type="submit"]');
     const originalText = submitButton.innerText;
