@@ -11,6 +11,8 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f8f8f8;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -503,19 +505,22 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    aspect-ratio: 16 / 9;
 }
 
 .video-placeholder {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    object-fit: cover;
 }
 
 .product-video {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     border-radius: 12px;
+    object-fit: cover;
 }
 
 .play-button {
@@ -840,6 +845,8 @@ body {
     max-width: 500px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
+    max-height: calc(100dvh - 40px);
+    overflow: auto;
 }
 
 .close-modal {
@@ -892,6 +899,22 @@ body {
     border-color: #e63946;
     outline: none;
 }
+
+/* Input with clear button */
+.input-with-action { position: relative; }
+.input-with-action .clear-input {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: #adb5bd;
+    cursor: pointer;
+}
+.input-with-action .clear-input:hover { color: #e63946; }
 
 .checkbox-group {
     display: flex;
@@ -1090,6 +1113,7 @@ button:disabled {
         top: -15px;
         right: -15px;
         border-width: 2px;
+        animation: none !important;
     }
     
     .gift-badge strong {
@@ -1507,6 +1531,7 @@ button:disabled {
     padding: 10px;
     z-index: 999;
     text-align: center;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
 }
 
 .sticky-cta-mobile .cta-button {
@@ -1550,6 +1575,15 @@ button:disabled {
     }
     
     body {
-        padding-bottom: 70px; /* To prevent content from being hidden behind sticky button */
+        padding-bottom: calc(70px + env(safe-area-inset-bottom)); /* To prevent content from being hidden behind sticky button */
+    }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }

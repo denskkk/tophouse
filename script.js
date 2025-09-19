@@ -22,41 +22,49 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Add phone number formatting
+// Add phone number formatting with gentle mask and clear button
 const phoneInput = document.getElementById('phone');
+const clearPhoneBtn = document.querySelector('.clear-input');
+
+if (clearPhoneBtn && phoneInput) {
+    clearPhoneBtn.addEventListener('click', () => {
+        phoneInput.value = '';
+        phoneInput.focus();
+    });
+}
+
 if (phoneInput) {
     phoneInput.addEventListener('input', function (e) {
+        const cursorPos = e.target.selectionStart;
         let value = e.target.value.replace(/\D/g, '');
-        let formattedValue = '';
-        
-        if (value.length > 0) {
-            if (value.startsWith('38')) {
-                value = value.substring(2);
-            }
-            
-            // Format as +38 (0xx) xxx-xx-xx
-            if (value.length > 0) {
-                formattedValue = '+38 ';
-                
-                if (value.length > 0) {
-                    formattedValue += '(0' + value.substring(0, Math.min(2, value.length));
-                    
-                    if (value.length > 2) {
-                        formattedValue += ') ' + value.substring(2, Math.min(5, value.length));
-                        
-                        if (value.length > 5) {
-                            formattedValue += '-' + value.substring(5, Math.min(7, value.length));
-                            
-                            if (value.length > 7) {
-                                formattedValue += '-' + value.substring(7, Math.min(9, value.length));
-                            }
-                        }
-                    }
-                }
-            }
+
+        // Allow user to delete freely
+        if (value.length === 0) {
+            e.target.value = '';
+            return;
         }
-        
-        e.target.value = formattedValue;
+
+        // Keep only up to 10 digits of the local part starting with 0
+        if (value.startsWith('38')) value = value.slice(2);
+        if (!value.startsWith('0')) value = '0' + value;
+        value = value.slice(0, 10);
+
+        // Format +38 (0xx) xxx-xx-xx
+        let out = '+38 ';
+        if (value.length <= 3) {
+            out += '(' + value + ')';
+        } else if (value.length <= 6) {
+            out += '(' + value.slice(0,3) + ') ' + value.slice(3);
+        } else if (value.length <= 8) {
+            out += '(' + value.slice(0,3) + ') ' + value.slice(3,6) + '-' + value.slice(6);
+        } else {
+            out += '(' + value.slice(0,3) + ') ' + value.slice(3,6) + '-' + value.slice(6,8) + '-' + value.slice(8);
+        }
+
+        e.target.value = out;
+
+        // Try to keep cursor stable (best-effort)
+        try { e.target.setSelectionRange(out.length, out.length); } catch {}
     });
 }
 
