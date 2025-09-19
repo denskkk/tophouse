@@ -156,8 +156,8 @@ src="https://www.facebook.com/tr?id=778466684826549&ev=PageView&noscript=1"
             <div class="demo-video">
                 <h3>Дивіться як легко наш розробний ніж ріже будь-які продукти!</h3>
                 <div class="video-container">
-                    <canvas id="video-thumbnail" class="video-placeholder"></canvas>
-                    <video id="product-video" class="product-video" preload="metadata" style="display:none;" controls>
+                    <img id="video-poster" class="video-placeholder" src="images/kitchen-knife-and-sharpener.png" alt="Відео прев'ю" />
+                    <video id="product-video" class="product-video" preload="none" playsinline webkit-playsinline style="display:none;" controls>
                         <source src="videos/video.mp4" type="video/mp4">
                         Ваш браузер не підтримує відео.
                     </video>
@@ -367,12 +367,6 @@ src="https://www.facebook.com/tr?id=778466684826549&ev=PageView&noscript=1"
             </div>
         </div>
     </footer>
-
-    <!-- Activity notification -->
-    <div class="activity-notification" id="activityNotification">
-        <span class="notification-text"></span>
-        <span class="notification-close">&times;</span>
-    </div>
 
     <!-- Modal -->
     <div class="modal" id="orderModal">

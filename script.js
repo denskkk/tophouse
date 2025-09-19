@@ -283,24 +283,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animation on scroll (simple implementation)
-const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.feature-item, .reason-item, .testimonial-item');
-    
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('animate');
-        }
-    });
-};
-
-window.addEventListener('scroll', animateOnScroll);
-
-// Initialize animations on page load
-window.addEventListener('load', animateOnScroll);
+// Removed scroll-based animation handler in favor of IntersectionObserver
 
 // Remove all JavaScript functionality for the sticky CTA button
 // This ensures it remains completely static without any animations or movements
@@ -346,8 +329,11 @@ window.addEventListener('load', () => {
     });
 });
 
-// Periodically update stock (every 15-45 seconds)
-setInterval(updateStockCount, Math.random() * 30000 + 15000);
+// Periodically update stock (lower frequency, 30-60 seconds) and only when tab is visible
+setInterval(() => {
+    if (document.hidden) return;
+    updateStockCount();
+}, Math.floor(Math.random() * 30000 + 30000));
 
 // Activity notification system
 const activityNotification = document.getElementById('activityNotification');
@@ -402,11 +388,12 @@ let notificationInterval;
 if (!notificationsDisabled) {
     // Show first notification after a short delay
     setTimeout(() => {
-        showActivityNotification();
+        if (!document.hidden) showActivityNotification();
         
-        // Then show periodically
-        notificationInterval = setInterval(showActivityNotification, 
-                    Math.floor(Math.random() * (maxNotificationTime - minNotificationTime) + minNotificationTime));
+        // Then show periodically (respect tab visibility)
+        notificationInterval = setInterval(() => {
+            if (!document.hidden) showActivityNotification();
+        }, Math.floor(Math.random() * (maxNotificationTime - minNotificationTime) + minNotificationTime));
     }, 8000);
 }
 
@@ -414,33 +401,14 @@ if (!notificationsDisabled) {
 
 // Video play button handler
 const playButton = document.querySelector('.play-button');
-const videoThumbnail = document.getElementById('video-thumbnail');
+const videoPoster = document.getElementById('video-poster');
 const videoContainer = document.querySelector('.video-container');
 const productVideo = document.getElementById('product-video');
 
-if (playButton && videoThumbnail && videoContainer && productVideo) {
-    // Capture a frame from the video to use as thumbnail when video metadata is loaded
-    productVideo.addEventListener('loadedmetadata', function() {
-        // Seek to a moment in the video (30% of the duration)
-        productVideo.currentTime = productVideo.duration * 0.3;
-    });
-    
-    // When the video has seeked, capture the frame
-    productVideo.addEventListener('seeked', function() {
-        // Create canvas and capture the current frame
-        const canvas = videoThumbnail;
-        canvas.width = productVideo.videoWidth;
-        canvas.height = productVideo.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(productVideo, 0, 0, canvas.width, canvas.height);
-        
-        // Reset video time to start
-        productVideo.currentTime = 0;
-    });
-    
+if (playButton && videoPoster && videoContainer && productVideo) {
     playButton.addEventListener('click', function() {
-        // Hide placeholder image and play button
-        videoThumbnail.style.display = 'none';
+        // Hide poster image and play button
+        videoPoster.style.display = 'none';
         playButton.style.display = 'none';
         
         // Show and play video
@@ -450,11 +418,26 @@ if (playButton && videoThumbnail && videoContainer && productVideo) {
     
     // Add event listener for when the video ends
     productVideo.addEventListener('ended', function() {
-        // Show placeholder and play button again
-        videoThumbnail.style.display = 'block';
+        // Show poster and play button again
+        videoPoster.style.display = 'block';
         playButton.style.display = 'flex';
         
         // Hide video
         productVideo.style.display = 'none';
     });
 }
+
+// Optimize scroll-based animations using IntersectionObserver
+(() => {
+    if (!('IntersectionObserver' in window)) return; // fallback silent
+    const targets = document.querySelectorAll('.feature-item, .reason-item, .testimonial-item');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+    targets.forEach(t => io.observe(t));
+})();
