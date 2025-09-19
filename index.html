@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopHouse - Професійний розробний ніж з точилкою у подарунок</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">TopHouse</div>
+            </div>
+            <div class="header-contacts">
+                <a href="mailto:info@tophouse.ua" class="email-link"><i class="fas fa-envelope"></i> info@tophouse.ua</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="main-title">Професійний розробний ніж TopHouse</h1>
+                    <h2 class="secondary-title"><span class="highlight">ТОЧИЛКА У ПОДАРУНОК!</span></h2>
+                    <div class="offer-timer">
+                        <p>До кінця акції залишилося:</p>
+                        <div class="timer" id="countdown">
+                            <div class="timer-item">
+                                <span id="hours">24</span>
+                                <span class="timer-label">Годин</span>
+                            </div>
+                            <div class="timer-item">
+                                <span id="minutes">00</span>
+                                <span class="timer-label">Хвилин</span>
+                            </div>
+                            <div class="timer-item">
+                                <span id="seconds">00</span>
+                                <span class="timer-label">Секунд</span>
+                            </div>
+                        </div>
+                        <div class="stock-indicator">
+                            <div class="stock-bar">
+                                <div class="stock-bar-fill"></div>
+                            </div>
+                            <p class="stock-text">ЗАЛИШИЛОСЬ: <span id="stockCount">12</span> НОЖІВ</p>
+                        </div>
+                    </div>
+                    <div class="price-block">
+                        <div class="old-price">1300 грн</div>
+                        <div class="new-price">599 грн</div>
+                    </div>
+                    <button class="cta-button order-btn glow-effect">ЗАМОВИТИ ЗІ ЗНИЖКОЮ</button>
+                    <div class="guarantee">
+                        <i class="fas fa-shield-alt"></i> Гарантія 1 рік
+                        <i class="fas fa-truck"></i> Доставка по всій Україні
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/kitchen-knife-and-sharpener.png" alt="Розробний ніж TopHouse з точилкою" class="main-product-image">
+                    <div class="gift-badge">
+                        <span><strong>+</strong> ТОЧИЛКА<br><strong>У ПОДАРУНОК!</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">ЧОМУ НАШ РОЗРОБНИЙ НІЖ НАЙКРАЩИЙ</h2>
+            <div class="features-container">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-medal"></i></div>
+                    <h3>Висока якість</h3>
+                    <p>Виготовлено з німецької нержавіючої сталі найвищої якості</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-cut"></i></div>
+                    <h3>Гостре лезо</h3>
+                    <p>Залишається гострим навіть після багатьох місяців використання</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-hand-holding"></i></div>
+                    <h3>Ергономічна ручка</h3>
+                    <p>Зручно лежить в руці, не ковзає навіть з вологими руками</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Точилка в подарунок</h3>
+                    <p>Професійна двоступенева точилка, яка підтримує ваш ніж завжди ідеально гострим та подовжує термін його служби</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="before-after">
+        <div class="container">
+            <h2 class="section-title">ВІДЧУЙТЕ РІЗНИЦЮ</h2>
+            <div class="before-after-container">
+                <div class="before-after-item">
+                    <div class="comparison-label before-label">ДО</div>
+                    <div class="comparison-content">
+                        <img src="images/kitchen-knife.png" alt="Звичайний ніж" class="comparison-img">
+                        <div class="comparison-text">
+                            <h3>Звичайний ніж</h3>
+                            <ul>
+                                <li><i class="fas fa-times"></i> Швидко тупляться і складно заточуються</li>
+                                <li><i class="fas fa-times"></i> Нерівно ріжуть продукти, м'нуть їх</li>
+                                <li><i class="fas fa-times"></i> Потребують значних зусиль при нарізанні</li>
+                                <li><i class="fas fa-times"></i> Часто зісковзують і травмують руки</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="before-after-item">
+                    <div class="comparison-label after-label">ПІСЛЯ</div>
+                    <div class="comparison-content">
+                        <img src="images/kitchen-knife-tophouse.png" alt="Професійний ніж TopHouse" class="comparison-img">
+                        <div class="comparison-text">
+                            <h3>Професійний розробний ніж TopHouse</h3>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Довго залишаються гострими з нашою точилкою</li>
+                                <li><i class="fas fa-check"></i> Ідеально рівний і точний розріз продуктів</li>
+                                <li><i class="fas fa-check"></i> Ріжуть легко, без зайвих зусиль</li>
+                                <li><i class="fas fa-check"></i> Ергономічна рукоятка запобігає травмам</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-video">
+                <h3>Дивіться як легко наш розробний ніж ріже будь-які продукти!</h3>
+                <div class="video-container">
+                    <canvas id="video-thumbnail" class="video-placeholder"></canvas>
+                    <video id="product-video" class="product-video" preload="metadata" style="display:none;" controls>
+                        <source src="videos/video.mp4" type="video/mp4">
+                        Ваш браузер не підтримує відео.
+                    </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-details">
+        <div class="container">
+            <h2 class="section-title">ХАРАКТЕРИСТИКИ НОЖА</h2>
+            <div class="product-specs">
+                <div class="specs-image">
+                    <img src="images/kitchen-knife-and-sharpener.png" alt="Розробний ніж з точилкою" class="specs-img">
+                </div>
+                <div class="specs-list">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Розробний ніж - ідеальний для розділки м'яса та риби</li>
+                        <li><i class="fas fa-check"></i> Ідеально збалансований для точної роботи</li>
+                        <li><i class="fas fa-check"></i> Підходить для нарізки фруктів та овочів</li>
+                        <li><i class="fas fa-check"></i> Ергономічна рукоятка, зручна та безпечна</li>
+                        <li><i class="fas fa-check"></i> Професійна точилка для ножа <span class="highlight">У ПОДАРУНОК!</span></li>
+                    </ul>
+                    <div class="material-info">
+                        <p>Матеріал: Німецька нержавіюча сталь + ергономічна ручка</p>
+                        <p>Довжина леза: 20 см</p>
+                    </div>
+                    <button class="cta-button order-btn">ЗАБРАТИ НІЖ ЗІ ЗНИЖКОЮ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sticky mobile CTA -->
+    <div class="sticky-cta-mobile">
+        <button class="cta-button order-btn glow-effect">ЗАМОВИТИ ЗІ ЗНИЖКОЮ 40%</button>
+    </div>
+    
+    <!-- Activity notification -->
+    <div class="activity-notification" id="activityNotification">
+        <div class="notification-icon">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="notification-content">
+            <p class="notification-text"></p>
+            <p class="notification-time">Щойно</p>
+        </div>
+        <div class="notification-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+    
+    <!-- Quick contact options removed completely -->
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">ВІДГУКИ НАШИХ КЛІЄНТІВ</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/kitchen-knife-and-sharpener.png" alt="Клієнт 1">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Дуже задоволена покупкою! Ніж дійсно гострий та зручний. А точилка в подарунок - приємний бонус!"</p>
+                        <p class="testimonial-author">Олена, Київ</p>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/kitchen-knife-and-sharpener.png" alt="Клієнт 2">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Купив розробний ніж для дружини, вона в захваті! Якість на висоті, ріже відмінно. Рекомендую!"</p>
+                        <p class="testimonial-author">Андрій, Львів</p>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/kitchen-knife-and-sharpener.png" alt="Клієнт 3">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Професійна якість за доступною ціною. Точилка чудово працює і справді підтримує ніж гострим!"</p>
+                        <p class="testimonial-author">Марина, Одеса</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">ЧОМУ ВАРТО КУПИТИ ЗАРАЗ?</h2>
+            <div class="reasons-container">
+                <div class="reason-item">
+                    <div class="reason-icon"><i class="fas fa-percentage"></i></div>
+                    <h3>Знижка 54%</h3>
+                    <p>Тільки зараз спеціальна ціна - економія 701 грн!</p>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Точилка у подарунок</h3>
+                    <p>Отримайте професійну точилку безкоштовно!</p>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Швидка доставка</h3>
+                    <p>Доставимо ваше замовлення протягом 1-3 днів</p>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <h3>Гарантія якості</h3>
+                    <p>Повернення коштів якщо товар не сподобається</p>
+                </div>
+            </div>
+            <div class="final-cta">
+                <div class="final-price">
+                    <div class="old-price">1300 грн</div>
+                    <div class="new-price">599 грн</div>
+                </div>
+                <div class="stock-indicator stock-indicator-bottom">
+                    <div class="stock-bar">
+                        <div class="stock-bar-fill"></div>
+                    </div>
+                    <p class="stock-text">ЗАЛИШИЛОСЬ: <span class="stockCount">12</span> НОЖІВ</p>
+                </div>
+                <button class="cta-button big-order-btn order-btn">ТАК, ХОЧУ ЗАМОВИТИ ЗІ ЗНИЖКОЮ</button>
+                <p class="hurry-text">Поспішайте! При такому попиті, набори закінчаться найближчим часом!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-badges">
+        <div class="container">
+            <div class="badges-container">
+                <div class="badge-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <p>100% гарантія якості</p>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-truck"></i>
+                    <p>Швидка доставка</p>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-undo"></i>
+                    <p>14 днів на повернення</p>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-lock"></i>
+                    <p>Безпечна оплата</p>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <div class="customers-count">
+                    <p>Нам довіряють <span>1000+</span> клієнтів</p>
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">TopHouse</div>
+                <div class="footer-links">
+                    <a href="shipping.html">Доставка та оплата</a>
+                    <a href="policies.html">Політика компанії</a>
+                    <a href="refund.html">Повернення коштів</a>
+                    <a href="privacy.html">Політика конфіденційності</a>
+                    <a href="offer.html">Договір оферти</a>
+                </div>
+                <div class="footer-contacts">
+                    <p><i class="fas fa-envelope"></i> info@tophouse.ua</p>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 TopHouse. Усі права захищені.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Activity notification -->
+    <div class="activity-notification" id="activityNotification">
+        <span class="notification-text"></span>
+        <span class="notification-close">&times;</span>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Оформити замовлення</h2>
+            <h3>Професійний розробний ніж TopHouse + точилка у ПОДАРУНОК!</h3>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Ваше ім'я:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Ваш телефон:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+38 (0__) ___-__-__">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">Я погоджуюсь з <a href="privacy.html" target="_blank">політикою конфіденційності</a></label>
+                </div>
+                <button type="submit" class="cta-button">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
+            </form>
+            <p class="form-note">*Наш менеджер зв'яжеться з вами найближчим часом для підтвердження замовлення</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
