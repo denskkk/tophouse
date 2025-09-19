@@ -93,40 +93,51 @@ function handleFormSubmit(e) {
 
     const message = `💥 Нове замовлення! 💥\n\n👤 Ім'я: ${name}\n📞 Телефон: ${formattedPhone}\n\n🔪 Товар: Професійний розробний ніж TopHouse + точилка у ПОДАРУНОК\n💰 Ціна: 599 грн`;
 
-    // Telegram send using CORS-safelisted POST and GET fallback
-    const botToken = '8375195965:AAGLdfnVmLVnyih3b9xswnSfCSH6fVjM52s';
-    const chatId = '-4955839873';
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    const params = new URLSearchParams({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'HTML'
-    });
-
-    fetch(telegramUrl, {
+    // Prefer server relay to avoid desktop CORS; fallback to direct no-cors
+    const relayUrl = 'send_telegram.php';
+    fetch(relayUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params,
-        mode: 'no-cors',
-        keepalive: true
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: message })
     })
-    .then(() => {
-        // Treat as success (opaque response in no-cors)
-        showSuccessNotification('Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
-        closeModal();
-        if (orderForm) orderForm.reset();
+    .then(res => res.json())
+    .then(data => {
+        if (data && data.ok) {
+            showSuccessNotification('Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
+            closeModal();
+            if (orderForm) orderForm.reset();
+            return;
+        }
+        throw new Error('Relay error');
     })
-    .catch(err => {
-        // Fallback: fire GET via image beacon (still sends request)
-        try {
-            const beacon = new Image();
-            beacon.src = `${telegramUrl}?${params.toString()}`;
-        } catch {}
-        console.error('Fetch error (using GET fallback):', err);
-        showSuccessNotification('Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
-        closeModal();
-        if (orderForm) orderForm.reset();
+    .catch(() => {
+        // Direct fallback
+        const botToken = '8375195965:AAGLdfnVmLVnyih3b9xswnSfCSH6fVjM52s';
+        const chatId = '-4955839873';
+        const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        const params = new URLSearchParams({ chat_id: chatId, text: message, parse_mode: 'HTML' });
+        return fetch(telegramUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params,
+            mode: 'no-cors',
+            keepalive: true
+        })
+        .then(() => {
+            showSuccessNotification('Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
+            closeModal();
+            if (orderForm) orderForm.reset();
+        })
+        .catch(() => {
+            // Last-resort image beacon
+            try {
+                const beacon = new Image();
+                beacon.src = `${telegramUrl}?${params.toString()}`;
+            } catch {}
+            showSuccessNotification('Дякуємо за замовлення! Наш менеджер зв\'яжеться з вами найближчим часом.');
+            closeModal();
+            if (orderForm) orderForm.reset();
+        });
     })
     .finally(() => {
         submitButton.innerText = originalText;
